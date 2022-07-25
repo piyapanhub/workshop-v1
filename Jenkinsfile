@@ -40,17 +40,17 @@ pipeline {
             }
         }
         
-//         stage('Build docker image') {
-//             steps {
-//                 script {
-//                     docker.withRegistry('', 'dockerhub') {
-//                         def slackImage = docker.build("${env.image}:${BUILD_NUMBER}")
-//                         slackImage.push()
-//                         slackImage.push('latest')
-//                     }
-//                 }
-//             }
-//         }
+        stage('Build docker image') {
+            steps {
+                script {
+                    docker.withRegistry('', 'dockerhub') {
+                        def slackImage = docker.build("${env.image}:${BUILD_NUMBER}")
+                        slackImage.push()
+                        slackImage.push('latest')
+                    }
+                }
+            }
+        }
          //stage('Selenium Testing') {
             //steps {
                 //input "Does the staging environment look ok?"
