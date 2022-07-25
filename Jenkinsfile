@@ -3,7 +3,10 @@ pipeline {
     agent {
         label 'master'
     }
-
+    
+    tools {
+        nodejs '18.6.0'
+    }
     environment {
         image = "piyapandocker/workshop-test"
         registry = "docker.io"
@@ -29,18 +32,25 @@ pipeline {
         //         sh 'ANSIBLE_ROLES_PATH="$PWD/ansible-script/roles" ansible-playbook -vvv ./ansible-script/playbook/web-server/web-server.yml -i ./ansible-script/host -u root -e "state=prepareation tagnumber=${BUILD_NUMBER}"'
         //     }
         // }
+
+        stage('Selenium Testing') {
+            steps {
+                sh "node test.js"
+                input "testing ok?"     
+            }
+        }
         
-        //stage('Build docker image') {
-            //steps {
-                //script {
-                    //docker.withRegistry('', 'dockerhub') {
-                        //def slackImage = docker.build("${env.image}:${BUILD_NUMBER}")
-                        //slackImage.push()
-                        //slackImage.push('latest')
-                    //}
-                //}
-            //}
-        //}
+        // stage('Build docker image') {
+        //     steps {
+        //         script {
+        //             docker.withRegistry('', 'dockerhub') {
+        //                 def slackImage = docker.build("${env.image}:${BUILD_NUMBER}")
+        //                 slackImage.push()
+        //                 slackImage.push('latest')
+        //             }
+        //         }
+        //     }
+        // }
          //stage('Selenium Testing') {
             //steps {
                 //input "Does the staging environment look ok?"
@@ -48,19 +58,12 @@ pipeline {
             //}
         //}
 
-        stage('Selenium Testing') {
-            steps {
-                sh "node test.js"
-                
-            }
-        }
-
-        stage('Deployment'){
-            steps {
-                sh "docker-compose up -d"
-            }
+        // stage('Deployment'){
+        //     steps {
+        //         sh "docker-compose up -d"
+        //     }
             
-        }
+        // }
 
         // stage('tag docker image') {
         //     steps {

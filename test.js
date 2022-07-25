@@ -2,7 +2,7 @@ const {Builder, Browser, By, Key, until} = require('selenium-webdriver');
 
 (async function example() {
   let driver = await new Builder().forBrowser(Browser.CHROME)
-  .usingServer('http://34.126.167.224:4444/wd/hub')
+  .usingServer('http://34.142.236.243:4444/wd/hub')
   .build();
   try {
     await driver.get('http://www.google.com/');
