@@ -1,0 +1,23 @@
+- name: copy tmpaltes
+  template:
+      src: web-docker-compose.yml
+      dest: /tmp/docker-compose.yml
+      backup: true
+      force: true
+      owner: "root"
+      group: "root"
+      mode: 0644
+
+- name: docker pull latest images
+  command: docker-compose -f /tmp/docker-compose.yml pull
+
+- name: docker recreate latest images
+  command: docker-compose -f /tmp/docker-compose.yml up -d
+
+- name: clean up
+  file: 
+    path: /tmp/docker-compose.yml
+    state: absent
+    
+
+  

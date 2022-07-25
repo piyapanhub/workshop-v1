@@ -1,0 +1,11 @@
+version: '2'
+
+services:
+    web-node-js:
+        image: piyapandocker/workshop-test:latest
+        container_name: web-server
+        #build: .
+        ports:
+            - "3000:3000"
+        environment:
+            - MONGODB_ADDON_URI=mongodb://172.31.30.232:27017/test
