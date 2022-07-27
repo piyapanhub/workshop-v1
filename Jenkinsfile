@@ -1,7 +1,5 @@
 pipeline {
-  agent {
-    label 'master'
-  }
+  agent any
   stages {
     stage('Checkout') {
       steps {
@@ -49,6 +47,5 @@ pipeline {
   environment {
     image = 'piyapandocker/workshop-test'
     registry = 'docker.io'
-    master = 'master'
   }
 }
