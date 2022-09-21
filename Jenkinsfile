@@ -14,12 +14,12 @@ pipeline {
       }
     }
 
-    stage('Selenium Testing') {
-      steps {
-        sh 'node test.js'
-        input 'testing ok?'
-      }
-    }
+//     stage('Selenium Testing') {
+//       steps {
+//         sh 'node test.js'
+//         input 'testing ok?'
+//       }
+//     }
 
     stage('Build docker image') {
       steps {
@@ -41,11 +41,11 @@ pipeline {
     }
 
   }
-  tools {
-    nodejs '18.6.0'
-  }
+//   tools {
+//     nodejs '18.6.0'
+//   }
   environment {
-    image = 'piyapandocker/workshop-test'
+    image = 'piyapanker/workshop1'
     registry = 'docker.io'
   }
 }
