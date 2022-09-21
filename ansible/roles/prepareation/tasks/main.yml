@@ -1,14 +1,14 @@
 - name: git checkout code latest
   git:
-    repo: 'https://github.com/piyapangithub/workshop-dev1.git'
+    repo: 'https://github.com/piyapanhub/workshop-v1.git'
     dest: /tmp/workshop-dev1
     version: master
 
 - name: Build docker images
-  command: docker build -f /tmp/workshop-dev1/Dockerfile -t piyapandocker/workshop-test:"{{ tagnumber }}" /tmp/workshop-dev1
+  command: docker build -f /tmp/workshop-dev1/Dockerfile -t piyapanker/workshop1:"{{ tagnumber }}" /tmp/workshop-dev1
 
 - name: Docker tag images
-  command: docker tag piyapandocker/workshop-tests:"{{ tagnumber }}" piyapandocker/workshop-test:latest
+  command: docker tag piyapanker/workshop1:"{{ tagnumber }}" piyapanker/workshop1:latest
 
 - name: Docker push
-  command: docker push piyapandocker/workshop-test:latest 
+  command: docker push piyapanker/workshop1:latest 
